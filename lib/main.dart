@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:whatsupui/home_screen.dart';
+import 'package:whatsupui/second_page.dart';
+import 'package:whatsupui/settings_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,12 +14,17 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'WhatsApp UI',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.teal,
       ),
-      home: const HomeScreen()
+      initialRoute: HomeScreen.id,
+      routes: {
+        HomeScreen.id : (context) => HomeScreen(),
+        SecondPage.id : (context) => SecondPage(),
+        SettingPage.id : (context) => SettingPage()
+      },
     );
   }
 }

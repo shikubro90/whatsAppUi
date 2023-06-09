@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'settings_page.dart';
+import 'second_page.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String id = 'home_screen';
@@ -16,6 +18,42 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Scaffold(
           appBar: AppBar(
             title: const Text("WhatsApp"),
+            actions: [
+              const Icon(Icons.search),
+              const SizedBox(
+                width: 10,
+              ),
+              PopupMenuButton(
+                onSelected: (value){
+                  if(value == 'second'){
+                    // router method
+                    Navigator.pushNamed(context, SecondPage.id);
+                    // Navigator.push(context, MaterialPageRoute(builder: (context)=> SecondPage()));
+                  }
+                  else if(value=='setting'){
+
+                    Navigator.pushNamed(context, SettingPage.id);
+                    // Navigator.push(context, MaterialPageRoute(builder: (context)=>SettingPage()));
+                  }
+                  
+                  
+                },
+                  icon: const Icon(Icons.more_horiz_outlined),
+                  itemBuilder: (context) => [
+                    const PopupMenuItem(
+                      value: 'second',
+                      child: Text("New Group"),
+                    ),
+                    const PopupMenuItem(
+                      value: 'setting',
+                      child: Text("Settings"),
+                    ),
+                    const PopupMenuItem(
+                      value: 3,
+                      child: Text("Logout"),
+                    ),
+                  ])
+            ],
             bottom: const TabBar(
               tabs: [
                 Tab(
@@ -32,28 +70,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ],
             ),
-            actions: [
-              const Icon(Icons.search),
-              const SizedBox(
-                width: 10,
-              ),
-              PopupMenuButton(
-                  icon: const Icon(Icons.more_horiz_outlined),
-                  itemBuilder: (context) => [
-                        const PopupMenuItem(
-                          value: 1,
-                          child: Text("New Group"),
-                        ),
-                        const PopupMenuItem(
-                          value: 2,
-                          child: Text("Settings"),
-                        ),
-                        const PopupMenuItem(
-                          value: 3,
-                          child: Text("Logout"),
-                        ),
-                      ])
-            ],
+
           ),
           body: TabBarView(
             children: [
@@ -81,7 +98,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text("New Update"),
+                            const Text("New Update"),
                             ListTile(
                               leading: Container(
                                 decoration: BoxDecoration(
@@ -93,8 +110,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtKEYvI78q9Hn6F5tMj8u6qqFWZ2s_IjgvbQ&usqp=CAU"),
                                 ),
                               ),
-                              title: Text("Jhon Click"),
-                              subtitle: Text("30 min ago"),
+                              title: const Text("Jhon Click"),
+                              subtitle: const Text("30 min ago"),
                             ),
                           ],
                         ),
@@ -124,7 +141,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         backgroundImage: NetworkImage(
                             "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtKEYvI78q9Hn6F5tMj8u6qqFWZ2s_IjgvbQ&usqp=CAU"),
                       ),
-                      title: Text("Jhon Click"),
+                      title: const Text("Jhon Click"),
                       subtitle: Text(index / 2 == 0
                           ? "You have missed audio call"
                           : "You have missed video call"),
